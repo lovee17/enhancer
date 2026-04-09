@@ -1,392 +1,138 @@
-\documentclass[a4paper,11pt]{article}
-\usepackage{latexsym}
-\usepackage{xcolor}
-\usepackage{float}
-\usepackage{ragged2e}
+\documentclass[a4paper,10pt]{article}
+
 \usepackage[empty]{fullpage}
-\usepackage{wrapfig}
-\usepackage{lipsum}
-\usepackage{tabularx}
 \usepackage{titlesec}
-\usepackage{geometry}
-\usepackage{marvosym}
-\usepackage{verbatim}
-\usepackage{fontawesome5}
 \usepackage{enumitem}
 \usepackage[hidelinks]{hyperref}
 \usepackage{fancyhdr}
-\usepackage{multicol}
-\usepackage{graphicx}
-% \usepackage{cfr-lm} % Comment or remove this line (CFR-LM font)
-\usepackage[T1]{fontenc}
-\usepackage{tgtermes} % TeX Gyre Termes (Times New Roman equivalent)
-\setlength{\multicolsep}{0pt} 
+
 \pagestyle{fancy}
-\fancyhf{} % clear all header and footer fields
-\fancyfoot{}
+\fancyhf{}
 \renewcommand{\headrulewidth}{0pt}
-\renewcommand{\footrulewidth}{0pt}
-\geometry{left=1.4cm, top=0.8cm, right=1.2cm, bottom=1cm}
 
-\usepackage[most]{tcolorbox}
-\tcbset{
-	frame code={},
-	center title,
-	left=0pt,
-	right=0pt,
-	top=0pt,
-	bottom=0pt,
-	colback=gray!20,
-	colframe=white,
-	width=\dimexpr\textwidth\relax,
-	enlarge left by=-2mm,
-	boxsep=4pt,
-	arc=0pt,outer arc=0pt,
-}
+% Margins
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.5in}
+\addtolength{\textheight}{1in}
 
-\urlstyle{same}
 \raggedright
 \setlength{\tabcolsep}{0in}
 
-% Sections formatting
-\titleformat{\section}{
-  \vspace{-2pt}\scshape\raggedright\large
-}{}{0em}{}[\color{black}\titlerule \vspace{-7pt}]
+% Section formatting
+\titleformat{\section}{\large\bfseries}{}{0em}{}[\titlerule]
 
-%-------------------------
 % Custom commands
-\newcommand{\resumeItem}[2]{
-  \item{
-    \textbf{#1}{:\hspace{0.5mm}#2 \vspace{-0.5mm}}
-  }
-}
-
-\newcommand{\resumePOR}[3]{
-\vspace{0.2mm}\item
-    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
-        \textbf{#1}: \hspace{0.3mm}#2 & \textit{\small{#3}} 
-    \end{tabular*}
-    \vspace{-1mm}
-}
-
 \newcommand{\resumeSubheading}[4]{
-\vspace{0.1mm}\item
-    \begin{tabular*}{0.98\textwidth}[t]{l@{\extracolsep{\fill}}r}
-        \textbf{#1} & \textit{\footnotesize{#4}} \\
-        \textit{\footnotesize{#3}} &  \footnotesize{#2}\\
-    \end{tabular*}
-    \vspace{-1.4mm}
+\vspace{2pt}
+\begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
+\textbf{#1} & #2 \\
+\textit{#3} & \textit{#4} \\
+\end{tabular*}\vspace{4pt}
 }
 
-% \newcommand{\resumeProject}[4]{
-% \vspace{-0.1 mm}\item
-%     \begin{tabular*}{0.98\textwidth}[t]{l@{\extracolsep{\fill}}r}
-%         \textbf{#1} & {\footnotesize{#3}} \\
-%         \small{#2} & \footnotesize{#4}
-%     \end{tabular*}
-%     \vspace{-2mm}
-% }
-
-\newcommand{\resumeProject}[2]{
-\vspace{0.3 mm}\item
-    \begin{tabular*}{0.98\textwidth}[t]{l@{\extracolsep{\fill}}r}
-        #1 & \footnotesize{#2} \\
-    \end{tabular*}
-    \vspace{-1mm}
-}
-
-\newcommand{\resumeProjectP}[3]{
-\vspace{0.3 mm}\item
-    \begin{tabular*}{0.98\textwidth}[t]{l@{\extracolsep{\fill}}r}
-        \textbf{#1} & \text{\footnotesize{#2}} \\
-        \large{#3}
-    \end{tabular*}
-    \vspace{-6.7 mm}
-}
-
-
-% \newcommand{\resumeSubItem}[2]{#1: #2\vspace{0.8pt}}
-\newcommand{\resumeSubItem}[2]{
-\vspace{0.3 mm}\item
-    \begin{tabular*}{0.98\textwidth}[t]{l@{\extracolsep{\fill}}r}
-        #1 & \footnotesize{#2} \\
-    \end{tabular*}
-    \vspace{-1mm}
-}
-
-
-\renewcommand{\labelitemi}{$\vcenter{\hbox{\tiny$\bullet$}}$}
-
-\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=*,labelsep=0mm]}
-\newcommand{\resumeHeadingSkillStart}{\begin{itemize}[leftmargin=*,itemsep=1.0mm, rightmargin=2ex]}
-\newcommand{\resumeItemListStart}{\begin{justify}\begin{itemize}[leftmargin=3ex, rightmargin=2ex, noitemsep,labelsep=1.2mm,itemsep=0mm]\small}
-
-\newcommand{\resumeSubHeadingListEnd}{\end{itemize}\vspace{1mm}}
-\newcommand{\resumeHeadingSkillEnd}{\end{itemize}\vspace{-1mm}}
-\newcommand{\resumeItemListEnd}{\end{itemize}\end{justify}\vspace{-1mm}}
-\newcommand{\cvsection}[1]{%
-\vspace{1mm}
-\begin{tcolorbox}
-    \textbf{\large #1}
-\end{tcolorbox}
-    \vspace{-4mm}
-}
-
-\newcolumntype{L}{>{\raggedright\arraybackslash}X}%
-\newcolumntype{R}{>{\raggedleft\arraybackslash}X}%
-\newcolumntype{C}{>{\centering\arraybackslash}X}%
-
-\newcommand{\name}{Jatin Prajapati} % Your Name
-\newcommand{\phone}{9425021595 } % Your Phone Number
-\newcommand{\emaila}{\textcolor{blue}{jatinskytek@gmail.com}} %Email 
-\newcommand{\emailb} {jatinskytek@gmail.com} %Email 2
-\newcommand{\website} {Website} %Website
-\newcommand{\github}{Github} %Github
-\newcommand{\linkedin}{Linkedin} %linkedin
 \begin{document}
-% \fontfamily{cmr}\selectfont
-%\scriptsize
 
 %----------HEADING-----------------
-% \parbox{\linewidth}{%
-%     \centering
-%     \textbf{\LARGE \name} \\[0.5em]
-%     \faIcon{mobile-alt} +91-\phone \hspace{0.4mm}$|$ 
-%     \faIcon{envelope} \textcolor{blue}{\href{mailto:\emailb}{ \emailb}}  \hspace{0.2mm} $|$ 
-%     % \faIcon{globe} \textcolor{blue}{\href{https://jatinprajapati.vercel.app
-%     % }{\website}}  \hspace{0.2mm} $|$
-%     \faIcon{github} \textcolor{blue}{\href{https://github.com/jatin-star}{\github} } \hspace{0.2mm}$|$ 
-%     \faIcon{linkedin} \textcolor{blue}{\href{https://www.linkedin.com/in/jatin-skytek145/}{\linkedin}} \\
-% }
-\parbox{\linewidth}{%
-    \centering
-    \textbf{\LARGE \name} \\[0.5em]
-    +91-\phone \hspace{0.4mm}$|$ 
-    \emailb \hspace{0.4mm}$|$
-    {\href{https://www.linkedin.com/in/jatin-skytek145/}{linkedin.com/in/jatin-skytek145}} $|$
-    {\href{https://github.com/jatinskytek}{github.com/jatinskytek}} \hspace{0.4mm}\\
-}
+\begin{center}
+{\Huge \textbf{Love Rajput}} \\
+\vspace{4pt}
+{rajputlove765@gmail.com} \quad  \quad +919981088184 \quad  \quad 
+{linkedin.com/in/love-rajput}
+\end{center}
 
+\vspace{-8pt}
+%-----------SUMMARY-----------------
+\section*{Professional Summary}
+Java Developer with 3+ years of experience building scalable, high-throughput enterprise applications in the BFSI domain using Java 8/11, Spring Boot, Microservices, and Oracle. Delivered 40\% reduction in loan processing time and 25\% infrastructure cost savings through server migration and performance optimization. Adept at REST API design, CI/CD automation with Jenkins, and Agile delivery in cross-functional teams.
 
-
-\vspace{-2mm}
-%----Summary----%
-\section{\textbf{Summary}}
-% {Machine Learning Engineer specializing about AI security. Experienced in adversarial learning, model robustness, and backdoor detection. Now focused on contributing to secure and privacy-aware AI systems, with a commitment to learning and growing in the field.}
-
-{Machine Learning Engineer with 3 years of experience building scalable ML systems and production-grade computer vision pipelines. Strong background in model deployment, inference optimization, and data processing, with hands-on experience debugging real-world systems. Proven ability to design, evaluate, and improve ML models while collaborating across teams to deliver reliable and efficient solutions.}
-
-
-\vspace{-2mm}
-%-----------EXPERIENCE-----------------
-\section{\textbf{Work Experience}}
- \resumeProject
-  {\textbf{Machine Learning Engineer} | Droisys | Noida, Uttar Pradesh}
-  {August 2025 – Present}
-        \resumeItemListStart
-        \item{Designed and deployed a YOLOv8-based object detection system for retail brand recognition in production environments.}
-        
-        \item{Improved inference latency by 25–40\% through optimization of preprocessing pipelines, batching strategies, and efficient resource utilization.}
-        
-        \item{Built scalable data pipelines for auto-annotation and few-shot labeling, accelerating dataset generation and reducing manual effort.}
-        
-        \item{Implemented model evaluation and confidence-based filtering mechanisms to detect low-quality predictions, improving system reliability.}
-        
-        \item{Debugged production issues across model inference and data pipelines, ensuring system stability and performance.}
-        \resumeItemListEnd
-
-
-    \resumeProject
-      {\textbf{Machine Learning Engineer} | CIPL | Noida, Uttar Pradesh}
-      {July 2023 - July 2025}
-        \resumeItemListStart
-        \item{Developed and evaluated ML models for cryptographic analysis, simulating large-scale prediction attacks on 50+ cipher systems.}
-        
-        \item{Designed a neural cryptosystem (Alice–Bob–Eve) achieving >99\% accuracy, demonstrating secure communication via learned representations.}
-        
-        \item{Built evaluation pipelines using NIST test suites to validate randomness and model robustness.}
-        
-        \item{Applied adversarial ML techniques (FGSM, PGD) to analyze vulnerabilities and improve model robustness.}
-        
-        \item{Led development of a backdoor detection framework (TraceNet), focusing on scalable and interpretable ML security solutions.}
-        \resumeItemListEnd
-    \vspace{-3mm}    
-
-%-----------PROJECTS-----------------
-% \newcommand{\resumeProjectNoItemNoDate}[2]{
-% \vspace{1mm}
-% \textbf{#1 
-% {\small #2}
-% % \vspace{2mm}
-% }
-\newcommand{\resumeProjectNoItemNoDate}[2]{
-  \item #1 : {\small #2} \vspace{-2mm}
-}
-
-
-\section{\textbf{Projects}}
-\vspace{2mm}
-\begin{itemize}[leftmargin=0.15in]
-
-\resumeProjectNoItemNoDate
-{TraceNet – Backdoor Detection Framework}
-{Developed a scalable gradient-based detection system for identifying backdoor attacks; improved detection speed by 10× on benchmark datasets.}
-
-\resumeProjectNoItemNoDate
-{Retail Product Recognition System}
-{Built end-to-end CV pipelines using YOLOv8 and CLIP embeddings; evaluated trade-offs between accuracy, latency, and scalability for production use.}
-
-\resumeProjectNoItemNoDate
-{Adversarial Neural Cryptosystem}
-{Designed and trained a multi-agent neural system achieving 99.9\% secure communication accuracy with validated randomness properties.}
-
-\resumeProjectNoItemNoDate
-{Adversarial Robustness Evaluation}
-{Developed benchmarking pipelines to evaluate model performance under adversarial attacks, identifying critical failure patterns.}
-
-% \resumeProjectNoItemNoDate
-%   {TraceNet – Backdoor Detection in Neural Networks}
-%   {Detected backdoor attacks by analyzing gradients and clustering patterns; Surpassed baseline speed by 10x on standard image datasets like MNIST and CIFAR-10.}
-
-% \resumeProjectNoItemNoDate
-%   {Adversarial Neural Cryptosystem}
-%   {Designed a GAN-like Alice-Bob-Eve model for secure bit generation; achieved 99.9\% accuracy and passed 13+ NIST pseudorandomness tests.}
-
-% \resumeProjectNoItemNoDate
-%   {Adversarial Robustness Evaluation}
-%   {Benchmarked CNN robustness under adversarial attacks (FGSM, PGD) and Gaussian noise on MNIST and CIFAR-10; identified 30–40\% accuracy degradation and key vulnerability zones via saliency shifts.}
-
-% \resumeProjectNoItemNoDate
-%   {Hospital Readmission Prediction (HCUP 2016)}
-%   {Analyzed highly imbalanced (98:2) patient data to model readmission risk; delivered actionable insights in collaboration with University of Florida.}
-
-% \resumeProjectNoItemNoDate
-%   {Chronic Kidney Disease Mortality Modeling}
-%   {Used clinical data from 234 patients to build models predicting mortality risk, focusing on clear, interpretable results.}
-
-% \resumeProjectNoItemNoDate
-%   {Anomaly Detection from Wearable Sensors}
-%   {Applied autoencoder-based reconstruction loss to classify anomalies in human activity data collected from wearable sensors.}
-
-% \resumeProjectNoItemNoDate
-%   {Face Recognition using MobileNet}
-%   {Developed a real-time, lightweight face recognition system with 93\% precision using MobileNet architecture and OpenCV, optimized for mobile and edge devices.}
+\vspace{-8pt}
+%-----------SKILLS-----------------
+\section*{Skills}
+\begin{itemize}[leftmargin=*]
+\item \textbf{Backend:} Java 8/11, Java 17, Spring Boot, Spring MVC, Spring Security, Hibernate, REST API Development, Microservices Architecture, Multithreading, JPA, Redis
+\vspace{-5pt}
+\item \textbf{Web Technologies:} HTML, CSS, JavaScript, JSP, Servlets
+\vspace{-5pt}
+\item \textbf{Database:} Oracle (SQL, PL/SQL)
+\vspace{-5pt}
+\item \textbf{Devops \& Tools:} Git, Jenkins, Docker, Maven, Postman, SonarQube
+\vspace{-5pt}
+\item \textbf{Servers:} Apache Tomcat, JBoss, WebLogic
+\vspace{-5pt}
+\item \textbf{Concepts:} OOP, SOLID Principles, Design Patterns, SDLC, Agile Scrum, Performance Optimization
 \end{itemize}
 
+\vspace{-14pt}
+%-----------EXPERIENCE-----------------
+\section*{Experience}
+\vspace{-5pt}
+\resumeSubheading
+{Nucleus Software Exports Limited}{Noida, India}
+{}{ }
 
-% \vspace{-3 mm}
-\section{\textbf{Research}}
-\vspace{1 mm}
+\vspace{-18pt}
 
-\resumeProjectP
-  {Backdoor Detection in Deep Neural Networks (TraceNet)}{IEEE (ICDSINC, NIT Raipur) 2025}{}
-  \resumeItemListStart
-    \item Conducted research to detect and interpret backdoor attacks, achieving 10x faster detection speed than baseline methods while maintaining high accuracy and enhancing interpretability.
-    \item Submitted work to IEEE conference focusing on scalable, interpretable AI security aligned with incident response best practices; experimental evaluation on 3 public datasets.
-  \resumeItemListEnd
+\textbf{Software Engineer} \hfill Oct 2023 -- Present
+\begin{itemize}[leftmargin=*]
+\vspace{-4pt}
 
-\resumeProjectP
-  {Adversarial Neural Cryptography: Security Challenges and Solutions}{ICMC 2025 -- IIT Bhilai}{}
-  \resumeItemListStart
-    \item Presented findings analyzing vulnerabilities and robustness of neural cryptosystems under adversarial attacks, reducing model distinguishability to 50\%.
-    \item Attained nearly 100\% plaintext retrieval accuracy by Bob from ciphertext, demonstrating strong cryptosystem reliability and effective mitigation of information leakage.
-  \resumeItemListEnd
-      
-    % \resumeProjectP
-    %   {Patient Readmission Prediction (Research @ University of Florida)}
-    %   {Feb 2024}{}
+\item Designed, developed, and optimized enterprise \textbf{loan origination and lending modules} using Java, Spring Boot, Hibernate, and Oracle PL/SQL, supporting high-volume BFSI transactions.
+\vspace{-5pt}
+\item Implemented a critical \textbf{CRS module} for loan processing in FinnOne for Bank of Queensland, restoring functionality and reducing processing time by \textbf{40\%}.
+\vspace{-5pt}
+\item Migrated the application from \textbf{WebLogic to JBoss}, reducing licensing costs by \textbf{25\%} and improving deployment efficiency.
+\vspace{-5pt}
+\item Led the end-to-end implementation of a loan product for National Bank of Oman, accelerating product rollout and improving operational efficiency.
+\vspace{-5pt}
+\item Developed and maintained REST APIs for loan processing and customer workflows, enabling seamless integration between internal modules.
+\vspace{-5pt}
+\item Improved application performance by 30\% through query optimization and efficient data handling.
+\vspace{-5pt}
+\item Mentored junior developers on Git workflows and CI/CD practices using Jenkins, improving team productivity by \textbf{10\%}.
+\end{itemize}
 
-    %   \resumeItemListStart
-    %     \item {Built a hospital readmission prediction pipeline (AUC: 0.9771).}
-    %     \item {Tackled class imbalance and focused on interpretability of medical ML models.}
-    %  \resumeItemListEnd
+\textbf{Assistant Software Engineer} \hfill Jan 2023 -- Sep 2023
 
-% \vspace{-7.5mm}
-% \hfill \textit{\footnotesize{}} \hspace{5mm}
- % \resumeHeadingSkillEnd
+\begin{itemize}[leftmargin=*]
+\vspace{-4pt}
+\item Contributed to development of FinnOne modules, actively participating in design, development, testing, and deployment phases of SDLC.
+\vspace{-5pt}
+\item Diagnosed and resolved 30+ critical production and UAT defects in BFSI loan workflows, achieving 99.5\% system uptime and reducing mean resolution time by 35\%.
+\vspace{-5pt}
+\item Developed secure authentication features using Spring Security and Oracle Database.
+\vspace{-5pt}
+\item Built EMI and repayment calculation modules ensuring high accuracy and performance for financial computations.
+\end{itemize}
 
-%--------------Research----------------
-% \vspace{0 mm}
-% \section{\textbf{Research}}
-% \small
-% \vspace{-0.4mm}
-% \resumeProject{\textbf{Adversarial Neural Cryptography: Security Challenges and Solutions}}{ICMC 2025 -- IIT Bhilai}
-% \vspace{1mm}
+\vspace{-14pt}
+%-----------PROJECTS-----------------
+\section*{Projects}
 
-% \begin{itemize}[leftmargin=*, noitemsep, topsep=0pt]
-%     \item Presented novel research on adversarial neural cryptography, analyzing the security of neural models generating pseudorandom sequences under adversarial distinguishers.
-%     \item Provided theoretical insights and empirical evaluation of information leakage risks, proposing strategies to enhance cryptosystem robustness against AI-driven attacks.
-% \end{itemize}
+\begin{itemize}[leftmargin=*]
 
-%-----Technical Skills-------
-% \vspace{-2 mm}
-% \section{\textbf{Skills}}
-% \vspace{2 mm}
-% \resumeItemListStart
-%   \item{\textbf{Languages \& Tools:} Python, SQL, Jupyter, Git, API Integration \vspace{1mm}}
-%   \item{\textbf{Machine Learning:} Logistic Regression, Decision Trees, Random Forest, XGBoost, SVM, K-Means, PCA, Clustering, Correlation Analysis \vspace{1mm}}
-%   \item{\textbf{Deep Learning:} CNN, ResNet, Autoencoders, GANs, LSTM, Transfer Learning \vspace{1mm}}
-%   \item{\textbf{Security \& Robustness:} Adversarial Attacks (FGSM, PGD), Model Poisoning, Backdoor Detection, Evasion Attacks, Loss Landscape Analysis \vspace{1mm}}
-%   \item{\textbf{Frameworks \& Libraries:} TensorFlow, Keras, Scikit-learn, OpenCV, NumPy, Pandas, Matplotlib, Seaborn \vspace{1mm}}
-%   \item{\textbf{Statistical \& Mathematical Methods:} Method of Moments, Maximum Likelihood Estimation, A/B Testing, Probability Distributions (Poisson, Gamma, Normal), Hypothesis Testing, Monte Carlo Method \vspace{1mm}}
-%   \item{\textbf{Other Skills:} Feature Engineering, Model Evaluation \& Metrics (Accuracy, Precision, Recall, F1, ROC-AUC), Hyperparameter Tuning, Statistics, A/B Testing, Explainable AI (Grad-CAM, SHAP) \vspace{1mm}}
-% \resumeItemListEnd
+\item \textbf{Maker-Checker Approval System} \\
+Developed a role-based Maker-Checker system using Java and Spring Boot to enforce secure transaction workflows, improving compliance and reducing unauthorized operations in financial systems.
 
-\vspace{-2 mm}
-\section{\textbf{Skills}}
-\vspace{2 mm}
-\resumeItemListStart
-\item{\textbf{Programming:} Python, SQL}
+\item \textbf{Chat-Based Customer Support Bot} \\
+Built a real-time chatbot using Spring Boot and WebSocket, automating loan-related query handling and reducing manual support effort through intelligent response and escalation mechanisms.
 
-\item{\textbf{ML Systems:} Model Deployment, Model Evaluation, Data Pipelines, Debugging, Performance Optimization}
+\end{itemize}
 
-\item{\textbf{Machine Learning:} Supervised Learning, Clustering, PCA, XGBoost, SVM}
+\vspace{-15pt}
+%-----------ACHIEVEMENTS-----------------
+\section*{Achievements}
 
-\item{\textbf{Deep Learning:} CNNs, GANs, LSTMs, Transfer Learning}
+\begin{itemize}[leftmargin=*]
+\item Spot Award (2x) at Nucleus Software for contribution to CRS migration project and restoring critical system functionality.
+\end{itemize}
 
-\item{\textbf{Computer Vision:} Object Detection (YOLO), Image Classification, Feature Extraction}
-
-\item{\textbf{Frameworks:} PyTorch, TensorFlow, Scikit-learn, OpenCV}
-
-\item{\textbf{Tools:} Git, Jupyter, Linux}
-\resumeItemListEnd
-
-
+\vspace{-10pt}
 %-----------EDUCATION-----------------
-\vspace{-5 mm}
-\section{\textbf{Education}}
-\resumeProject  
-  {Samrat Ashok Technological Institute, Madhya Pradesh}
-  {March 2019 - March 2023}{B.Tech. - Computer Science Engineering}
+\section*{Education}
+\vspace{-3pt}
+\textbf{Samrat Ashok Technological Institute}, Vidisha \\
+Bachelor of Technology in Computer Science and Engineering \\
+CGPA: 8.77 \hfill Jul 2019 - Jun 2023
 
-% Achievements
-% \resumeSubHeadingListStart
-
-% \newline
-% \resumeProject{\textbf{Adversarial Neural Cryptography} : Security Challenges and Solutions}
-% {ICMC 2025 - IIT Bhilai}
-% \vspace{1mm}
-
-% \resumeProject{\textbf{Adversarial Neural Cryptography: Security Challenges and Solutions}}{ICMC 2025 -- IIT Bhilai}
-% \vspace{1mm}
-
-% \begin{itemize}[leftmargin=*, noitemsep, topsep=0pt]
-%     \item Developed an adversarial neural cryptosystem with networks (Alice, Bob, Eve) that generates pseudorandom bits mimicking a true random bit generator.
-%     \item Demonstrated that the adversary forces the model to produce secure random outputs, achieving robustness against distinguishers and information leakage.
-% \end{itemize}
-
-
-
-
-%  \newline
-%  \resumeSubItem {\textbf{IIT JAM } }
-%  {Successfully Completed a ML Expert Course on AlgoExpert} \vspace{1mm}
-% \newline
-% \resumeSubItem {\textbf{GATE DSA} }
-%  {Successfully Completed a ML Expert Course on AlgoExpert}
-
-
-\resumeItemListEnd
-
-% \hspace*{0mm}\rule{1.035\textwidth}{0.1mm}
 \end{document}
