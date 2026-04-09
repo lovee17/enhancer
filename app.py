@@ -23,28 +23,35 @@ PROMPT_TEMPLATE = """You are a LaTeX resume optimizer. Output ONLY raw LaTeX cod
 
 FOR OPTIMIZATION:
 1. Analyze JD keywords against candidate's actual skills:
-   - High Expertise: Python, Machine Learning (ML), Data Analysis, ML Modeling, POC Research & Development, Data Cleansing, Regression, Decision Trees
-   - Good Expertise: Computer Vision
-   - Medium Expertise: SQL
-   - Knowledge/Project-Level: PySpark, GenAI, LLMs, NLP, and Basic RAG (Candidate has knowledge/POC project experience only.  NOT for large-scale enterprise pipelines.)
-   - STRICTLY FORBIDDEN: Do NOT include Cloud Platforms (AWS, Azure, GCP), "Advanced Pipelines", or "Agentic AI" (Candidate has NO experience for Agentic AI, so do NOT include even if it is mentioned in the JD).
+   - High Expertise: Java (8/11/17), Spring Boot, Spring MVC, Microservices Architecture, REST API Development, Hibernate, JPA, Multithreading, Performance Optimization, BFSI Domain Applications
+   - Good Expertise: Oracle (SQL, PL/SQL), System Design in enterprise applications, Application Migration (WebLogic to JBoss), CI/CD with Jenkins
+   - Medium Expertise: Docker, Redis, Spring Security
+   - Knowledge/Project-Level: WebSocket, Chatbot Development, Maker-Checker Systems
+   - STRICTLY FORBIDDEN: Do NOT include Cloud Platforms (AWS, Azure, GCP), "Advanced Distributed Systems" claims beyond experience, or "AI/ML" (Candidate has NO experience in these domains).
    - NO FLUFF: Strictly avoid generic adjectives like "Talented", "Highly Motivated", or "Passionate".
-   - CORE EXPERTISE ALIGNMENT: Prioritize the specific skills listed above. However, if the JD asks for standard ML/Data Analysis techniques (like Regression, Decision Trees, Data Cleansing, or Feature Engineering), you MUST include them as they are inherently part of the candidate's High Expertise in "Machine Learning (ML)" and "Data Analysis".
+   - CORE EXPERTISE ALIGNMENT: Prioritize Java backend, Spring ecosystem, BFSI systems, API development, and performance optimization. Include standard backend concepts like SDLC, Design Patterns, and Agile only if relevant to JD.
 
 2. Enhance Summary:
-   - Use a direct, technical headline. (e.g. "Machine Learning Engineer with 3 years..")
+   - Use a direct, technical headline (e.g., "Java Backend Developer with 3+ years of experience...")
    - strict - do not change years of experience, keep exact.
    - Replace generic text with JD-specific keywords that MATCH the candidate's skills listed above.
-   - CRITICAL: If the JD asks for AWS/Azure/GCP, DO NOT mention them. Focus on Python/ML.
-   
+   - CRITICAL: If the JD asks for AWS/Azure/GCP or AI/ML, DO NOT mention them. Focus on Java, Spring, Microservices, and BFSI.
+
 3. Enhance Skills Section:
-   Add JD keywords to the skills section if they align with the candidate's core domains (ML, CV, Python). Standard ML/Data techniques like Regression/Decision Trees should be included if present in the JD.
-   Organize: Programming, Tools, ML/CV, Domain Skills.
-   
+   Add JD keywords to the skills section if they align with the candidate's core domains (Java backend, Spring, Microservices, Oracle).
+   Organize: Programming, Frameworks, Backend & Architecture, Database, Tools, Concepts.
+
 4. Enhance Experience:
    Use JD keywords in existing bullet points.
    CRITICAL: Modify ONLY plain text keywords to prevent breaking PDF. Do NOT add or remove \\item commands.
-   
+   Focus on:
+   - Performance improvements (40% reduction, 30% optimization)
+   - Cost optimization (25% infra savings)
+   - BFSI domain contributions
+   - API development and system integrations
+   - Migration and system improvements
+   - Production issue resolution and system stability
+
 5. Keep All Definitions & Structure:
    ALL \\newcommand definitions must be in output unchanged.
    Do NOT remove or modify any LaTeX command definitions.
