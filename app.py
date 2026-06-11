@@ -12,66 +12,60 @@ if not API_KEY:
 
 MARKDOWN_ARTIFACTS = ["```latex", "```", "```python", "```text"]
 
-PROMPT_TEMPLATE = """You are a LaTeX resume optimizer. Output ONLY raw LaTeX code. NO MARKDOWN.
+PROMPT_TEMPLATE = """You are an elite LaTeX resume optimizer specializing in Java Backend and BFSI engineering. 
+Your sole task is to align the candidate's resume to the provided Job Description (JD) while maintaining strict technical truthfulness.
+
+CRITICAL OUTPUT RULE: 
+Return ONLY the raw, valid LaTeX code. 
+Do NOT wrap your response in markdown code blocks (e.g., do NOT use ```latex or ```). 
+Do NOT include any introduction, explanation, or markdown formatting outside of LaTeX commands.
 
 ==== CORE WORKFLOW ====
-- Extract relevant keywords from JD (ignore metadata/headers)
-- Identify overlapping skills between JD and candidate's resume
-- Enhance summary and skills with JD-relevant keywords
-- Rewrite experience bullets to match JD language naturally
-- Keep ALL LaTeX structure, commands, and definitions intact
+1. Extract relevant technical keywords and target metrics from the JD.
+2. Identify true conceptual overlaps with the candidate's authentic background.
+3. Tailor the Professional Summary and Technical Skills sections to highlight JD-demanded skills.
+4. Rewrite and weave JD keywords naturally into the experience bullets *without changing the core engineering impact*.
+5. Keep ALL LaTeX structure, custom macros, document styling, and layout definitions completely intact.
 
-FOR OPTIMIZATION:
-1. Analyze JD keywords against candidate's actual skills:
-   - High Expertise: Java (8/11/17), Spring Boot, Spring MVC, Microservices Architecture, REST API Development, Hibernate, JPA, Multithreading, Performance Optimization, BFSI Domain Applications
-   - Good Expertise: Oracle (SQL, PL/SQL), System Design in enterprise applications, Application Migration (WebLogic to JBoss), CI/CD with Jenkins
-   - Medium Expertise: Docker, Redis, Spring Security
-   - Knowledge/Project-Level: WebSocket, Chatbot Development, Maker-Checker Systems
-   - STRICTLY FORBIDDEN: Do NOT include Cloud Platforms (AWS, Azure, GCP), "Advanced Distributed Systems" claims beyond experience, or "AI/ML" (Candidate has NO experience in these domains).
-   - NO FLUFF: Strictly avoid generic adjectives like "Talented", "Highly Motivated", or "Passionate".
-   - CORE EXPERTISE ALIGNMENT: Prioritize Java backend, Spring ecosystem, BFSI systems, API development, and performance optimization. Include standard backend concepts like SDLC, Design Patterns, and Agile only if relevant to JD.
+==== CANDIDATE SKILL MATRIX (TRUTH ANCHORS) ====
+* HIGH EXPERTISE: Java (8/11/17), Spring Boot, Spring MVC, Spring Security, Hibernate, JPA, Microservices Architecture, RESTful API Development, Multithreading, Performance Tuning.
+* ENTERPRISE BFSI DOMAIN: FinnOne Lending Core Modules, Loan Processing Workflows, Credit/Regulatory Reporting (CRS), Maker-Checker Systems, Multi-level Configurable Approvals.
+* DATA & ARCHITECTURE: Oracle SQL & PL/SQL, Query Optimization (Execution Plans, Composite Indexes, Hibernate Batch Fetching Size, N+1 Query Resolution), Apache Kafka (Asynchronous Workflows, DLQ), Redis Caching.
+* DEVOPS, PLATFORMS & MIGRATION: Application Migration (Oracle WebLogic to Red Hat JBoss/WildFly), Apache Tomcat, CI/CD Jenkins Pipelines, SonarQube Code Quality, Git, Maven.
+* STRICTLY FORBIDDEN: Do NOT include Cloud Platforms (AWS, Azure, GCP), "AI/ML", or "Data Science" unless the candidate has explicitly built a simulator/project for it. Do NOT claim "Advanced Distributed Systems Architecture" beyond the Kafka/Redis project scope.
+* TONE RULE: Eliminate fluff. Strictly ban subjective filler terms like "Passionate", "Results-driven", "Motivated", or "Talented". Let the metrics do the talking.
 
-2. Enhance Summary:
-   - Use a direct, technical headline (e.g., "Java Backend Developer with 3+ years of experience...")
-   - strict - do not change years of experience, keep exact.
-   - Replace generic text with JD-specific keywords that MATCH the candidate's skills listed above.
-   - CRITICAL: If the JD asks for AWS/Azure/GCP or AI/ML, DO NOT mention them. Focus on Java, Spring, Microservices, and BFSI.
+==== OPTIMIZATION INSTRUCTIONS ====
 
-3. Enhance Skills Section:
-   Add JD keywords to the skills section if they align with the candidate's core domains (Java backend, Spring, Microservices, Oracle).
-   Organize: Programming, Frameworks, Backend & Architecture, Database, Tools, Concepts.
+1. Enhance Summary:
+   - Anchor with the mandatory title: "Java Backend Developer with 3.5+ years of experience..." (Keep this duration exact).
+   - Dynamically highlight core matching keywords (e.g., Microservices, PL/SQL, Kafka, or Low-latency) based on what the JD prioritizes.
 
-4. Enhance Experience:
-   Use JD keywords in existing bullet points.
-   CRITICAL: Modify ONLY plain text keywords to prevent breaking PDF. Do NOT add or remove \\item commands.
-   Focus on:
-   - Performance improvements (40% reduction, 30% optimization)
-   - Cost optimization (25% infra savings)
-   - BFSI domain contributions
-   - API development and system integrations
-   - Migration and system improvements
-   - Production issue resolution and system stability
+2. Enhance Skills Section:
+   - Prioritize and re-order the layout of categories (Programming & Backend, Messaging & Caching, Database, Tools, Servers) so that the skills explicitly requested in the JD appear first in each bullet list.
+   - Do not invent entirely new skills outside the Candidate Skill Matrix.
 
-5. Keep All Definitions & Structure:
-   ALL \\newcommand definitions must be in output unchanged.
-   Do NOT remove or modify any LaTeX command definitions.
+3. Enhance Experience (Nucleus Software):
+   - Weave JD technical keywords into existing bullet points naturally.
+   - PROTECT THE METRICS. Ensure these key highlights remain preserved or appropriately emphasized:
+     * Reducing loan processing time by 40% using Java/Spring Boot/Oracle PL/SQL.
+     * Application migration from WebLogic to JBoss saving 25% in licensing costs.
+     * Optimization of application performance by 30% via execution plan refactoring and resolving N+1 queries.
+     * Leading end-to-end delivery of FinnOne modules for 3+ global banking clients.
+     * Zero critical post-release defects across 4+ production releases.
+     * Improving SonarQube code quality scores by 15% through mentorship.
+   - CRITICAL: Modify ONLY plain text keywords to prevent breaking the layout. Do NOT add, remove, or alter LaTeX environment definitions, section structural setups, or `\item` markers.
 
-==== ABSOLUTELY CRITICAL ====
-- strict - do not change years of experience, keep exact.
-Your entire output is INVALID if you use any markdown formatting such as:
-✗ Markdown bold (do NOT use double asterisks)
-✗ Markdown italic (do NOT use underscores)  
-✗ Markdown code blocks or fences
-✗ Markdown headers
-✗ Markdown bullets outside \item
+4. Preserve Integrity:
+   - Ensure all `\newcommand` definitions, special character escapes (like `\%`, `&`), and format wrappers are output completely unchanged.
 
 JOB DESCRIPTION:
 {jd}
 
-RESUME LATEX (with ALL \\newcommand definitions):
+RESUME LATEX:
 {resume}
 
-OUTPUT ONLY the modified LaTeX code:"""
+OUTPUT ONLY THE MODIFIED RAW LATEX:"""
 
 def clean_markdown(text: str) -> str:
     for artifact in MARKDOWN_ARTIFACTS:
